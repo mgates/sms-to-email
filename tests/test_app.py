@@ -1,8 +1,9 @@
 import unittest
 import os
 import base64
+from mock import MagicMock
 
-os.environ['USERNAME'] = "foo"
+os.environ['USER'] = "foo"
 os.environ['PASSWORD'] = "bar"
 
 import sms2email
@@ -20,6 +21,10 @@ class TestSms2Email(unittest.TestCase):
         resp = self.app.post('/message', headers=self.make_headers())
         self.assertNotEqual(resp.status, "401 UNAUTHORIZED")
 
+    def test_it_sends_a_message(self):
+        self.app.send_message = MagicMock(return_value=True)
+        resp = self.app.post('/message', headers=self.make_headers())
+        self.app.send_message.assert_called()
 
     def make_headers(self):
         auth = base64.b64encode("foo" + b':' + "bar")

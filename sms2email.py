@@ -28,7 +28,7 @@ def send_mail(subject, content):
             'team@gopartage.com',
             subject,
             content,
-            ['micahgates@gopartage.com'])
+            os.environ['SEND_TO'])
 
     return True
 

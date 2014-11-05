@@ -29,7 +29,7 @@ def send_mail(subject, content):
             'team@gopartage.com',
             subject,
             content,
-            os.environ['SEND_TO'])
+            os.environ['SEND_TO'].split(','))
 
     return True
 

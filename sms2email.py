@@ -5,6 +5,7 @@ import boto.ses
 import os
 
 app = Flask(__name__)
+app.config['DEBUG'] = True
 
 app.config['BASIC_AUTH_USERNAME'] = os.environ['USER']
 app.config['BASIC_AUTH_PASSWORD'] = os.environ['PASSWORD']

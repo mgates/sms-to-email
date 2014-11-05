@@ -1,2 +1,2 @@
-web:  gunicorn sms2email.py  --log-file -
+web:  gunicorn sms2email:app --log-file -
 
